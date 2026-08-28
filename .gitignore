@@ -1,0 +1,11 @@
+# Arquivos auxiliares gerados pelo LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+build/
