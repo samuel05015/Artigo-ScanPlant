@@ -288,11 +288,11 @@ As Figuras \ref{fig:login} e \ref{fig:cadastro} apresentam, respectivamente, as 
 \noindent Fonte: Elaborada pelos autores a partir da versão publicada do ScanPlant (2026).
 \end{figure}
 
-Após o primeiro acesso, a aplicação apresenta um roteiro curto de uso. Na Figura \ref{fig:primeiros_passos}, a sequência ``capture, analise, cuide'' antecipa o comportamento esperado e informa que o resultado possui natureza probabilística. Essa comunicação é pertinente porque a facilidade de fotografar não deve induzir o usuário a interpretar a resposta automatizada como certificação taxonômica. A mesma tela também evidencia as restrições de segurança aplicáveis a decisões de consumo, uso medicinal e situações de urgência.
+Após o primeiro acesso, a aplicação apresenta as orientações reproduzidas na Figura \ref{fig:primeiros_passos}. A sequência ``capture, analise, cuide'' explica o percurso principal e informa que a identificação possui natureza probabilística, além de destacar limites relacionados a consumo, uso medicinal e situações de urgência.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.84\textwidth]{figuras/sistema/figura9_primeiros_passos.png}
+\includegraphics[width=0.80\textwidth]{figuras/sistema/figura9_primeiros_passos.png}
 \caption{Orientações de primeiros passos e limites de uso do sistema}
 \label{fig:primeiros_passos}
 \vspace{2pt}
@@ -356,18 +356,6 @@ Para verificar a persistência, a identificação foi salva com lembrete de rega
 \noindent Fonte: Elaborada pelos autores a partir da versão publicada do ScanPlant (2026).
 \end{figure}
 
-A ficha detalhada da Figura \ref{fig:detalhes_planta} preserva a fotografia, a classificação, a origem declarada, os alertas, as fontes, o estado do lembrete e a anotação. Essa reunião de dados melhora a continuidade da experiência, pois evita que o usuário refaça a identificação sempre que precisar consultar um cuidado básico. O registro da data de avaliação também auxilia a distinguir o instante da análise automatizada de atualizações posteriores feitas na coleção.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.70\textwidth]{figuras/sistema/figura14_detalhes.png}
-\caption{Ficha detalhada da planta com alertas, lembrete e anotação}
-\label{fig:detalhes_planta}
-\vspace{2pt}
-\small
-\noindent Fonte: Elaborada pelos autores a partir da versão publicada do ScanPlant (2026).
-\end{figure}
-
 No que tange ao suporte conversacional, o usuário pode interagir diretamente com o assistente botânico movido por inteligência artificial generativa. No entanto, para coibir orientações médicas errôneas ou alucinações perigosas em situações de emergência, a aplicação implementa um pipeline de moderação com o serviço \texttt{ContentSafetyService}. Caso uma mensagem do usuário mencione sintomas de envenenamento, mastigação acidental de folhas por crianças ou ingestão por cães e gatos, o sistema bloqueia o despacho genérico ao LLM e aciona um protocolo de resposta prioritária de emergência, orientando o usuário a procurar assistência médica ou médico-veterinária imediata e disponibilizando canais diretos de contato com centros toxicológicos, como o SINITOX (FIOCRUZ).
 
 No teste funcional, perguntou-se ao assistente como cuidar de uma costela-de-adão cultivada em ambiente interno. A resposta visível na Figura \ref{fig:assistente_funcional} organizou recomendações sobre luz indireta, intervalo de rega, umidade, substrato, adubação e suporte físico. A própria interface mantém um aviso para que o chat não seja usado como base única para decisões de ingestão ou uso medicinal. A resposta confirma o funcionamento do canal conversacional, mas sua formatação também revela uma oportunidade de melhoria: os marcadores de Markdown aparecem parcialmente como caracteres literais, tornando desejável aprimorar o renderizador de textos ricos para ampliar a legibilidade de respostas longas.
@@ -387,246 +375,54 @@ Em conjunto, as telas documentam um fluxo funcional de ponta a ponta, desde o ac
 Por fim, o módulo de comunidade possibilita aos membros compartilhar imagens de seus exemplares e trocar experiências via chat. Para salvaguardar a integridade dos dados dos usuários conforme os princípios da Lei Geral de Proteção de Dados (LGPD), o sistema introduziu flags explícitas de controle de privacidade: o cultivador escolhe se a publicação deve ser pública ou restrita, e se suas coordenadas geográficas de localização devem ser exibidas, anonimizadas em nível municipal ou totalmente ocultadas.
 
 \vspace{0.3cm}
-\noindent \textbf{Metodologia da Pesquisa Empírica e Caracterização Sociodemográfica}\par
+\noindent \textbf{Síntese da Avaliação com Usuários}\par
 \vspace{0.1cm}
 
-A validação da relevância das funcionalidades do ScanPlant e o levantamento das dores do público-alvo foram conduzidos por meio de uma pesquisa descritiva de natureza quanti-qualitativa, realizada mediante aplicação de questionário estruturado com 53 respondentes ($N = 53$), conforme preceitos metodológicos de Prodanov e Freitas (2013) e Gil (2019). O instrumento de coleta foi composto por 21 questões, combinando itens demográficos, escalas Likert de cinco pontos (variando de 1 = Muito Baixo/Totalmente Irrelevante a 5 = Muito Alto/Indispensável), questões de priorização múltipla e campos abertos para percepções subjetivas e sugestões de aprimoramento.
+A avaliação empírica foi realizada por meio de um questionário com 21 questões e 53 participantes ($N = 53$), combinando escalas de opinião, priorização de funcionalidades e campos abertos. A amostra foi composta majoritariamente por jovens de 18 a 25 anos (77,4\%); 81,1\% possuíam plantas em casa e 49,1\% se declararam iniciantes. Esses dados indicam proximidade com o público-alvo e, ao mesmo tempo, recomendam cautela na generalização dos resultados para outros perfis etários e níveis de experiência.
 
-Na Tabela 1 sintetiza-se a caracterização sociodemográfica e os hábitos de cultivo vegetal dos 53 participantes da pesquisa.
+Antes da demonstração, a identificação por fotografia foi a funcionalidade mais priorizada, com 88,7\% de avaliações altas, seguida pelos lembretes de rega (84,9\%), alertas de toxicidade (83,0\%) e assistente conversacional (77,4\%). A preocupação elevada com plantas tóxicas foi registrada por 83,0\% dos respondentes. Quanto à privacidade, 43,4\% rejeitaram a divulgação irrestrita da localização exata e 35,8\% aceitariam o compartilhamento apenas mediante controle transparente, resultado que sustenta a adoção de configurações granulares de visibilidade.
 
-\begin{table}[H]
+A Figura \ref{fig:sintese_avaliacao} reúne os indicadores posteriores à apresentação da plataforma. A impressão geral foi positiva ou muito positiva para 94,3\% dos participantes; 90,5\% classificaram o design como agradável ou muito agradável e a mesma proporção considerou o uso fácil ou muito fácil. A clareza do processo de identificação obteve 92,4\% de avaliações favoráveis. Na escala de utilidade, o sistema alcançou média de 8,91 em 10, enquanto o Net Promoter Score resultou em +71,7, com 75,5\% de promotores e 3,8\% de detratores.
+
+\begin{figure}[H]
 \centering
-\caption{Perfil sociodemográfico e hábitos de cultivo dos respondentes ($N = 53$)}
-\label{tab:perfil_amostra}
-\small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.15}
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.2cm} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{2.2cm} >{\centering\arraybackslash}p{2.2cm}}
-\toprule
-\textbf{Dimensão Avaliada} & \textbf{Categoria / Intervalo} & \textbf{Frequência ($n$)} & \textbf{Percentual (\%)} \\
-\midrule
-Faixa Etária & 18 a 25 anos & 41 & 77,4\% \\
- & 26 a 35 anos & 7 & 13,2\% \\
- & 36 a 50 anos & 5 & 9,4\% \\
-\midrule
-Posse de Plantas no Lar & Sim, possui plantas no domicílio & 43 & 81,1\% \\
- & Não possui plantas atualmente & 10 & 18,9\% \\
-\midrule
-Nível de Experiência com Cultivo & Iniciante & 26 & 49,1\% \\
- & Intermediário & 22 & 41,5\% \\
- & Avançado & 5 & 9,4\% \\
-\midrule
-Frequência de Cuidados e Rega & Diariamente & 19 & 35,8\% \\
- & 2 a 3 vezes por semana & 21 & 39,6\% \\
- & Semanalmente ou ocasional & 13 & 24,5\% \\
-\midrule
-Familiaridade com Ferramentas de IA & Alta familiaridade & 38 & 71,7\% \\
- & Média familiaridade & 13 & 24,5\% \\
- & Baixa ou nenhuma familiaridade & 2 & 3,8\% \\
-\bottomrule
-\end{tabularx}
+\begin{subfigure}[t]{0.82\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{figuras/grafico6_avaliacao_pos_demo.png}
+  \caption{Percepção da interface e da identificação após a demonstração}
+\end{subfigure}
+
+\vspace{0.2cm}
+\begin{subfigure}[t]{0.82\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{figuras/grafico7_nps_utilidade.png}
+  \caption{Utilidade percebida e índice de recomendação}
+\end{subfigure}
+\caption{Síntese dos resultados da avaliação do ScanPlant ($N = 53$)}
+\label{fig:sintese_avaliacao}
 \vspace{2pt}
 \small
 \noindent Fonte: Elaborada pelos autores com base nos dados da pesquisa.
-\end{table}
+\end{figure}
 
-A análise da Tabela 1 revela que a amostra é predominantemente composta por jovens adultos, com 77,4\% dos respondentes na faixa entre 18 e 25 anos, refletindo um estrato populacional altamente conectado a plataformas digitais e receptivo a inovações tecnológicas. Esse aspecto é corroborado pelo nível de familiaridade com ferramentas de inteligência artificial, no qual 71,7\% afirmam ter alta proximidade e 24,5\% nível intermediário, restando apenas 3,8\% com baixo contato.
+As respostas abertas concentraram-se em dificuldades de rega, luminosidade, nutrição do solo, pragas e segurança de animais domésticos. Entre as melhorias sugeridas destacaram-se a formatação mais clara das respostas do assistente, o histórico fotográfico das plantas, a organização da coleção por ambientes e a consulta offline de informações básicas. Esses achados são coerentes com as funções já implementadas e oferecem prioridades objetivas para versões futuras, sem substituir testes controlados de precisão, desempenho e acessibilidade.
 
-Ademais, constata-se que a expressiva maioria dos pesquisados (81,1\%) cultiva espécimes vegetais em seu ambiente residencial, evidenciando que a presença da natureza no lar é um hábito consolidado. Não obstante, o cruzamento desse dado com o grau de experiência técnica expõe uma vulnerabilidade latente: quase metade da amostra (49,1\%) autodeclara-se no estágio iniciante, e 41,5\% posicionam-se no intermediário, enquanto apenas 9,4\% detêm conhecimento avançado. Esse cenário ratifica as constatações de Perez et al. (2021), segundo as quais cultivadores domésticos urbanos frequentemente adquirem espécies ornamentais motivados por apelos estéticos ou emocionais (Hall; Knuth, 2019), porém carecem de letramento agronômico elementar, o que culmina no declínio precoce dos espécimes e em frustração cotidiana.
-
-\vspace{0.3cm}
-\noindent \textbf{Nível de Interesse, Desafios de Manejo e Propensão à Adoção de IA}\par
-\vspace{0.1cm}
-
-Para compreender a relação entre o engajamento dos indivíduos e as barreiras encontradas na manutenção de suas coleções botânicas, investigou-se o grau de interesse pelo cultivo comparado à dificuldade percebida nessa prática. Os resultados estão consolidados no Gráfico 1.
-
-\begin{grafico}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{figuras/grafico1_interesse_dificuldade.png}
-\caption{Nível de interesse pelo cultivo de plantas e grau de dificuldade percebida}
-\label{graf:interesse_dificuldade}
-\vspace{2pt}
-\small
-\noindent Fonte: Elaborada pelos autores com base nos dados da pesquisa.
-\end{grafico}
-
-Conforme se observa no Gráfico 1, há uma expressiva assimetria positiva no interesse pelo cultivo de plantas: 75,5\% dos respondentes declaram interesse elevado ou altíssimo (notas 4 e 5, sendo 39,6\% e 35,8\%, respectivamente), alcançando uma média ponderada de 4,04 em uma escala de 1 a 5. Em contraste, quando questionados sobre o grau de dificuldade em manter suas plantas vivas e saudáveis, 41,5\% dos participantes atribuem notas 4 e 5 (11,3\% muito difícil e 30,2\% difícil) e outros 39,6\% apontam dificuldade moderada (nota 3), totalizando uma média de 3,28. 
-
-Esse descompasso entre o desejo de cultivar e a competência técnica requerida demonstra que a mortalidade precoce de espécimes em ambiente urbano decorre da carência de orientação prática e imediata. A maioria das pessoas deseja ter um ambiente verde em casa, mas encontra entraves ao interpretar os sinais de estresse hídrico, estiolamento ou desequilíbrio nutricional de cada planta.
-
-Essa constatação conduziu à avaliação da receptividade do público a ferramentas tecnológicas que auxiliem na superação dessa lacuna de conhecimento. O Gráfico 2 sintetiza a disposição dos participantes em adotar um aplicativo inteligente para apoio ao cultivo.
-
-\begin{grafico}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{figuras/grafico2_disposicao_uso.png}
-\caption{Disposição para adoção de aplicativo com inteligência artificial para apoio ao cultivo}
-\label{graf:disposicao_uso}
-\vspace{2pt}
-\small
-\noindent Fonte: Elaborada pelos autores com base nos dados da pesquisa.
-\end{grafico}
-
-Os dados do Gráfico 2 atestam uma aprovação contundente da integração da inteligência artificial no contexto botânico doméstico: 88,7\% dos entrevistados manifestaram alta ou máxima disposição para utilizar um software dessa natureza (58,5\% nota 5 e 30,2\% nota 4), resultando em uma média de 4,45 e ausência total de notas na categoria 1 (0,0\%). Como salientam Russell e Norvig (2022), a inteligência artificial generativa e os sistemas especialistas mostram-se mais valiosos quando atuam como facilitadores cognitivos, traduzindo complexidades especializadas em recomendações acessíveis e acionáveis em tempo real.
-
-\vspace{0.3cm}
-\noindent \textbf{Priorização de Funcionalidades e Requisitos de Informação Botânica}\par
-\vspace{0.1cm}
-
-O levantamento dos requisitos prioritários constitui uma etapa basilar da engenharia de software para garantir que o produto atenda às expectativas reais dos seus futuros utilizadores (Sommerville, 2011; Pressman, 2015). No questionário, avaliou-se o grau de relevância atribuído a cada um dos quatro módulos essenciais do ScanPlant, bem como as categorias de informações botânicas consideradas indispensáveis na rotina de cuidados. Os resultados estão dispostos no Gráfico 3.
-
-\begin{grafico}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{figuras/grafico3_funcionalidades_informacoes.png}
-\caption{Funcionalidades e tipos de informações botânicas priorizadas pelos participantes}
-\label{graf:funcionalidades_informacoes}
-\vspace{2pt}
-\small
-\noindent Fonte: Elaborada pelos autores com base nos dados da pesquisa.
-\end{grafico}
-
-No Gráfico 3, verifica-se que o recurso de identificação de espécies por foto alcançou o maior nível de priorização absoluta, com 88,7\% de avaliações nas notas 4 e 5 (sendo 64,2\% na pontuação máxima 5; média 4,47). Logo em seguida, os lembretes automáticos de rega registraram 84,9\% de avaliações prioritárias (52,8\% nota 5; média 4,28), seguidos de perto pelos alertas preventivos de toxicidade doméstica com 83,0\% (58,5\% nota 5; média 4,34) e pelo assistente conversacional inteligente com 77,4\% (49,1\% nota 5; média 4,17).
-
-Na vertente das informações botânicas mais demandadas para inclusão nas fichas dos espécimes, a frequência de rega despontou em primeiro lugar com 86,8\% das citações, acompanhada rigorosamente pela luminosidade adequada e exposição solar (84,9\%), toxicidade para cães e gatos (79,2\%), diagnóstico de pragas foliares (75,5\%) e instruções de adubação e substrato (69,8\%). 
-
-Esses resultados fornecem sustentação empírica inequívoca para as escolhas de projeto do ScanPlant. Eles comprovam que uma ferramenta restrita à taxonomia descritiva (como o PlantNet) ou a uma simples agenda de irrigação (como o Planta) deixa lacunas substanciais na rotina do usuário. A entrega de valor reside na unificação sistêmica: o usuário identifica o vegetal por foto e, a partir desse ponto, o sistema provê as rotinas de rega, parâmetros de luminosidade e alertas imediatos sobre riscos à integridade da família.
-
-\vspace{0.3cm}
-\noindent \textbf{Segurança Toxicológica, Confiabilidade na IA e Gestão de Privacidade}\par
-\vspace{0.1cm}
-
-A presença de espécimes vegetais venenosos em lares urbanos representa um grave problema de saúde pública preventiva, frequentemente ignorado pelos próprios residentes (Botha; Penrith, 2008). No Gráfico 4 analisam-se a apreensão dos respondentes em relação à toxicidade e o grau de confiança atribuído a diagnósticos e recomendações gerados por inteligência artificial.
-
-\begin{grafico}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{figuras/grafico4_confianca_toxicidade.png}
-\caption{Nível de confiança em orientações de IA e preocupação com toxicidade de espécies domésticas}
-\label{graf:confianca_toxicidade}
-\vspace{2pt}
-\small
-\noindent Fonte: Elaborada pelos autores com base nos dados da pesquisa.
-\end{grafico}
-
-Os dados do Gráfico 4 demonstram que 83,0\% dos participantes manifestam preocupação alta ou altíssima com a toxicidade de plantas para crianças e animais de estimação (62,3\% nota 5 e 20,8\% nota 4), gerando uma expressiva média de 4,38. Apenas 5,7\% dos entrevistados declararam desinteresse pelo tema (notas 1 e 2). Essa apreensão generalizada encontra perfeito respaldo epidemiológico nas estatísticas do Sistema Nacional de Informações Tóxico-Farmacológicas (SINITOX, 2022), onde os acidentes toxicológicos causados por plantas ornamentais decorrem massivamente da falta de aviso prévio aos moradores. Ao inserir a sinalização toxicológica imediata no fluxo de retorno da identificação, o ScanPlant transforma a tecnologia em uma barreira ativa de prevenção de acidentes.
-
-Paralelamente, quando questionados sobre o grau de confiança em diagnósticos e sugestões de manejo fornecidos por IA, 71,7\% dos participantes declararam confiança alta ou muito alta (30,2\% nota 5 e 41,5\% nota 4; média de 3,96). Nota-se que 22,6\% mantêm uma postura neutra (nota 3) e 5,7\% demonstram desconfiança moderada (nota 2). Essa reserva compreensível reforça a necessidade de arquitetar assistentes com filtros de segurança rigorosos, assegurando que o sistema jamais emita palpites médicos improvisados em ocorrências de envenenamento agudo, direcionando o usuário com celeridade ao socorro emergencial.
-
-A dimensão da privacidade e proteção de dados também foi submetida ao crivo empírico. O Gráfico 5 ilustra a disposição dos usuários em compartilhar sua localização geográfica com a comunidade botânica da plataforma.
-
-\begin{grafico}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{figuras/grafico5_privacidade_geolocalizacao.png}
-\caption{Preferências sobre geolocalização e percepção sobre compartilhamento com a comunidade}
-\label{graf:privacidade_geolocalizacao}
-\vspace{2pt}
-\small
-\noindent Fonte: Elaborada pelos autores com base nos dados da pesquisa.
-\end{grafico}
-
-O Gráfico 5 evidencia que 43,4\% dos entrevistados ($n = 23$) rejeitam expressamente o compartilhamento de sua localização exata, admitindo apenas a exibição de dados genéricos (como cidade ou bairro) ou a manutenção do sigilo integral. Outros 35,8\% ($n = 19$) concordam com o compartilhamento condicionado à existência de um mecanismo transparente que possibilite escolher quais espécimes exibir na comunidade. Apenas 20,8\% ($n = 11$) demonstraram indiferença quanto ao compartilhamento irrestrito de coordenadas.
-
-Esses achados justificam plenamente a modelagem relacional implementada no banco de dados do ScanPlant, no qual a entidade \texttt{Planta} foi dotada dos campos booleanos \texttt{naComunidade} e \texttt{localizacaoPublica}. Em cumprimento aos princípios de privacidade desde a concepção (\textit{Privacy by Design}) e à Lei Geral de Proteção de Dados (LGPD), o sistema garante ao cultivador total soberania sobre o que torna público, prevenindo a exposição involuntária de sua residência.
-
-\vspace{0.3cm}
-\noindent \textbf{Avaliação Pós-Demonstração da Plataforma e Satisfação dos Usuários}\par
-\vspace{0.1cm}
-
-Com o intuito de verificar se a arquitetura de software implementada cumpriu seus propósitos em termos de usabilidade, precisão e experiência do usuário, os 53 participantes participaram de uma sessão demonstrativa das interfaces web e mobile do ScanPlant, avaliando em seguida cinco dimensões centrais da solução. Os resultados estão compilados no Gráfico 6.
-
-\begin{grafico}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{figuras/grafico6_avaliacao_pos_demo.png}
-\caption{Avaliação da demonstração da plataforma: usabilidade, utilidade e intenção de uso contínuo}
-\label{graf:avaliacao_pos_demo}
-\vspace{2pt}
-\small
-\noindent Fonte: Elaborada pelos autores com base nos dados da pesquisa.
-\end{grafico}
-
-A análise do Gráfico 6 revela índices de aceitação extraordinários em todos os eixos avaliados após o contato com o sistema funcional:
-\begin{itemize}[leftmargin=1.5cm,itemsep=2pt,parsep=0pt]
-  \item \textit{Clareza e usabilidade da interface}: 90,6\% de aprovação (58,5\% nota 5 e 32,1\% nota 4; média 4,47), atestando a eficácia do design responsivo com Tailwind CSS e React Native;
-  \item \textit{Rapidez e precisão no reconhecimento}: 86,8\% de aprovação (56,6\% nota 5 e 30,2\% nota 4; média 4,36), validando a integração assíncrona de alto desempenho com o proxy .NET 8 e a API Plant.id;
-  \item \textit{Utilidade prática do assistente de IA}: 88,7\% de aprovação (62,3\% nota 5 e 26,4\% nota 4; média 4,45), demonstrando a efetividade das respostas geradas pelo modelo generativo com moderação botânica;
-  \item \textit{Clareza dos alertas de toxicidade}: 92,5\% de aprovação (69,8\% nota 5 e 22,6\% nota 4; média 4,60), configurando a pontuação média mais elevada entre todas as funcionalidades examinadas;
-  \item \textit{Intenção de uso continuado no cotidiano}: 88,7\% de intenção positiva (64,2\% nota 5 e 24,5\% nota 4; média 4,47), sem registro de rejeição.
-\end{itemize}
-
-Para quantificar o impacto geral e a propensão dos participantes a recomendar ativamente o ScanPlant em seus círculos de convivência, foram apuradas a nota de utilidade prática global (escala de 0 a 10) e a métrica consagrada internacionalmente de lealdade \textit{Net Promoter Score} (NPS), conforme metodologia de Reichheld (2003). Os resultados correspondentes são apresentados no Gráfico 7.
-
-\begin{grafico}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{figuras/grafico7_nps_utilidade.png}
-\caption{Net Promoter Score (NPS) e distribuição das notas de utilidade prática atribuídas ao ScanPlant}
-\label{graf:nps_utilidade}
-\vspace{2pt}
-\small
-\noindent Fonte: Elaborada pelos autores com base nos dados da pesquisa.
-\end{grafico}
-
-No Gráfico 7, constata-se que a utilidade prática global da solução atingiu uma média excepcional de 8,91 em 10 pontos possíveis (mediana de 9,0 e desvio-padrão de 1,15). A distribuição das notas evidencia que 41,5\% dos respondentes conferiram a nota máxima 10, 24,5\% a nota 9 e 22,6\% a nota 8, demonstrando que 88,6\% da amostra avaliou o sistema com notas de excelência. Nenhuma avaliação inferior a 6 foi registrada.
-
-Na mensuração do Net Promoter Score (NPS), que classifica os participantes entre Promotores (notas 9 e 10), Neutros/Passivos (notas 7 e 8) e Detratores (notas 0 a 6), obteve-se o seguinte panorama:
-\begin{itemize}[leftmargin=1.5cm,itemsep=2pt,parsep=0pt]
-  \item \textbf{Promotores}: 75,5\% ($n = 40$), que expressaram forte lealdade e entusiasmo em difundir o uso do aplicativo;
-  \item \textbf{Neutros / Passivos}: 20,8\% ($n = 11$), que consideram a ferramenta útil e bem estruturada, embora sem vínculo emocional imediato;
-  \item \textbf{Detratores}: 3,8\% ($n = 2$), que pontuaram na faixa 6 devido à exigência de conectividade constante à internet ou por preferirem consultas botânicas impressas.
-\end{itemize}
-
-O cálculo do Net Promoter Score é formalizado pela Equação \ref{eq:nps}:
-\begin{equation}
-\label{eq:nps}
-\text{NPS} = \%\,\text{Promotores} - \%\,\text{Detratores} = 75,5\% - 3,8\% = +71,7
-\end{equation}
-
-Segundo a literatura de experiência do cliente e gestão da qualidade de software (Reichheld, 2003; Pressman, 2015), pontuações de NPS situadas acima de +70 enquadram o produto na almejada "Zona de Excelência". Essa marca comprova quantitativamente que o ScanPlant não apenas atende com primor às demandas operacionais às quais se propôs, como também desperta satisfação genuína e propensão expressiva de difusão orgânica entre cultivadores urbanos.
-
-\vspace{0.3cm}
-\noindent \textbf{Análise Qualitativa e Síntese das Demandas dos Usuários}\par
-\vspace{0.1cm}
-
-A coleta qualitativa mediante perguntas abertas possibilitou identificar as dores mais sentidas pelos participantes e reunir percepções valiosas sobre o comportamento de suas plantas. Na categorização das respostas relativas aos maiores obstáculos enfrentados na manutenção vegetal, destacaram-se cinco núcleos temáticos:
-\begin{enumerate}[leftmargin=1.2cm,itemsep=2pt,parsep=0pt]
-  \item \textit{Manejo de rega incorreto} (73,6\% das menções, $n = 39$): os respondentes relatam com frequência a dificuldade de reconhecer se o solo está úmido em profundidade, o que leva tanto ao ressecamento foliar quanto ao apodrecimento de raízes (\textit{root rot}) por rega excessiva. O ScanPlant atuou diretamente sobre essa queixa ao introduzir o controle de datas de rega baseado no perfil biológico do vegetal;
-  \item \textit{Inadequação solar e luminosidade} (52,8\% das menções, $n = 28$): confusão quanto aos termos agronômicos como "sol pleno", "meia-sombra" e "luz indireta", provocando queimaduras foliares em espécies sensíveis mantidas em varandas ou perda de vigor por sombreamento excessivo;
-  \item \textit{Nutrição do solo e adubação} (41,5\% das menções, $n = 22$): carência de instrução sobre compostos químicos (NPK), frequência de adubação e necessidade de replantio;
-  \item \textit{Pragas e doenças de folhagem} (34,0\% das menções, $n = 18$): infestação de cochonilhas, ácaros e fungos foliares sem conhecimento dos métodos caseiros de controle biológico;
-  \item \textit{Segurança de animais domésticos} (28,3\% das menções, $n = 15$): relatos de temor constante em adquirir espécimes botânicos para apartamentos onde vivem cães e felinos com tendência a mastigar plantas.
-\end{enumerate}
-
-No campo destinado a sugestões de melhorias técnicas para o sistema, os participantes apontaram contribuições altamente pertinentes. Foram solicitadas: a formatação rica de textos no chat do assistente (utilização de negrito, listas com marcadores e tópicos destacados para tornar a leitura dos passos de adubação mais fluida), a preservação de um histórico seriado de fotografias para acompanhar a evolução da saúde da planta ao longo dos meses, o agrupamento das plantas por cômodos da residência (sala, varanda, cozinha) e a inclusão de um modo de consulta offline de dados básicos de rega. Essas colaborações foram catalogadas e priorizadas na documentação de engenharia para implementação nas próximas versões evolutivas do sistema.
-
-Em síntese, a avaliação empírica e a demonstração funcional convergem ao indicar que as escolhas de modelagem e arquitetura atendem aos principais desafios propostos. Ao mesmo tempo, os limites observados na apresentação de respostas longas e o caráter probabilístico da identificação delimitam pontos concretos para a evolução do sistema, sem repetir a comparação de mercado já apresentada no Quadro 1.
+Em conjunto, a demonstração funcional e a avaliação com usuários indicam que a integração entre identificação, alertas, coleção e assistência conversacional responde a necessidades práticas do cultivo doméstico. A interpretação deve permanecer proporcional ao desenho do estudo: os resultados demonstram aceitação e funcionamento em um cenário específico, mas não constituem comprovação universal de acurácia botânica.
 
 % ==============================================================================
 % 5 CONSIDERAÇÕES FINAIS
 % ==============================================================================
 \section{CONSIDERAÇÕES FINAIS}
 
-Este artigo apresentou o projeto, a modelagem e a validação do ScanPlant, um sistema de identificação botânica e gestão de cuidados voltado para cultivadores domésticos e entusiastas da jardinagem. Ao integrar uma arquitetura servidora robusta em C\# (.NET 8) e PostgreSQL com interfaces web e móveis responsivas em React e React Native Expo, o projeto estabeleceu uma ponte interdisciplinar entre a engenharia de software contemporânea, a inteligência artificial aplicada e o manejo agronômico residencial.
+Este trabalho apresentou o desenvolvimento e a avaliação do ScanPlant, plataforma que integra identificação botânica por imagem, alertas de segurança, organização de coleções, lembretes e assistência conversacional. A arquitetura em C\# (.NET 8), PostgreSQL, React e React Native permitiu separar as responsabilidades do sistema e conectar as interfaces aos serviços externos de inteligência artificial por meio de uma camada servidora controlada.
 
-Os objetivos propostos no início da pesquisa foram plenamente alcançados. Conseguiu-se eliminar a fragmentação observada nas ferramentas concorrentes, reunindo em uma única plataforma a identificação taxonômica instantânea por visão computacional, o acompanhamento periódico das rotinas de irrigação e um assistente conversacional fundamentado no modelo generativo Google Gemini. A modelagem orientada a objetos realizada no software Astah UML permitiu antecipar regras de negócio cruciais e garantiu que o sistema operasse de forma modular, segura e performática.
+A demonstração da versão web publicada confirmou o percurso entre autenticação, envio da fotografia, retorno probabilístico, armazenamento da planta e consulta ao assistente. No cenário testado, uma fotografia de \textit{Monstera deliciosa} foi reconhecida com 86\% de correspondência e acompanhada por advertências de toxicidade, uso alimentar e regulamentação. As telas também evidenciaram que o sistema comunica a incerteza da classificação e orienta a confirmação com fontes especializadas.
 
-As contribuições deste estudo dividem-se em três eixos principais:
-\begin{enumerate}[leftmargin=1.2cm,itemsep=2pt,parsep=0pt]
-  \item \textbf{Contribuição prática e social}: disponibilização de uma ferramenta inteiramente gratuita e intuitiva que democratiza o acesso ao letramento botânico, prevenindo a mortalidade recorrente de espécimes vegetais nos lares e emitindo avisos imediatos de toxicidade que protegem crianças e animais domésticos contra envenenamentos acidentais;
-  \item \textbf{Contribuição tecnológica e arquitetural}: concepção e validação de um padrão de proxy seguro no back-end para orquestração de serviços externos de IA, implementando rotação dinâmica de credenciais, controle de cotas e pipeline de moderação semântica com classificação de intenções antes do envio aos modelos em nuvem;
-  \item \textbf{Contribuição científica e metodológica}: documentação sistemática do processo de desenvolvimento de software orientado a objetos com integração de visão computacional e LLMs, enriquecida por um rigoroso processo de avaliação empírica quanti-qualitativa com 53 participantes ($N = 53$).
-\end{enumerate}
+A avaliação com 53 participantes registrou média de utilidade de 8,91 em 10 e NPS de +71,7. Os resultados sustentam a relevância das funções centrais, mas devem ser interpretados dentro dos limites da amostra e do caráter demonstrativo do estudo. A contribuição do projeto reside sobretudo na reunião de recursos que normalmente aparecem fragmentados, com atenção à privacidade e à prevenção de decisões inseguras.
 
-A validação de campo confirmou de forma categórica as hipóteses de pesquisa. A utilidade prática global do sistema atingiu média de 8,91 em 10 pontos, e o índice de recomendação Net Promoter Score (NPS) alcançou +71,7 pontos, posicionando o ScanPlant na faixa de excelência da métrica internacional. Ficou evidente que a introdução de alertas toxicológicos (92,5\% de aprovação) e a disponibilização de um assistente conversacional contextualizado (88,7\% de aprovação) respondem com precisão às deficiências crônicas do cultivo urbano.
+Permanecem como limitações a dependência de conexão com a internet, a necessidade de ampliar os testes com diferentes espécies e condições fotográficas e a apresentação ainda simples de respostas longas do assistente. Como continuidade, recomendam-se um histórico fotográfico por planta, organização da coleção por ambientes, aperfeiçoamento do conteúdo formatado, avaliação formal de acessibilidade e recursos básicos de consulta offline.
 
-Não obstante os êxitos obtidos, identificaram-se limitações que merecem atenção em fases subsequentes. A principal reside na dependência de conectividade constante com a internet para as inferências em nuvem do Plant.id e do Google Gemini, o que impossibilita a identificação em áreas remotas ou rurais desprovidas de cobertura de dados. Outro aspecto refere-se à interface do chat no aplicativo móvel, que atualmente renderiza textos simples e carece de suporte dinâmico a tabelas, cartões e elementos visuais enriquecidos.
-
-A partir das lacunas observadas e das ricas sugestões recolhidas nas questões abertas da pesquisa empírica, propõem-se como trabalhos futuros:
-\begin{itemize}[leftmargin=1.5cm,itemsep=2pt,parsep=0pt]
-  \item Implementação de um renderizador rico de Markdown e cartões interativos nas mensagens do assistente generativo, permitindo destacar procedimentos agronômicos em tabelas e caixas explicativas;
-  \item Criação de um módulo de histórico fotográfico seriado por espécime, viabilizando a análise longitudinal da evolução da saúde foliar da planta ao longo dos meses;
-  \item Segmentação do catálogo de plantas por cômodos ou ambientes físicos da moradia (ex.: sacada, sala, quarto e quintal), personalizando as recomendações conforme o microclima local;
-  \item Integração do sistema a sensores de baixo custo baseados em plataformas IoT (como ESP32), efetuando a leitura autônoma de umidade de solo e intensidade luminosa;
-  \item Desenvolvimento de um módulo de cache taxonômico local no dispositivo cliente para identificação offline preliminar das espécies domésticas mais frequentes.
-\end{itemize}
-
-Em suma, o ScanPlant consolida-se como uma iniciativa tecnológica e socialmente relevante, demonstrando que a integração inteligente entre visão computacional, modelos generativos e boas práticas de engenharia de software tem o poder de aproximar a população da natureza de forma segura, responsável e sustentável.
+Conclui-se que o ScanPlant constitui uma aplicação funcional e pertinente ao cultivo doméstico, ao aproximar visão computacional, modelos generativos e práticas de engenharia de software. Seu uso, contudo, deve permanecer informativo e complementar ao conhecimento de especialistas, especialmente em decisões relacionadas à ingestão, toxicidade e manejo de espécies potencialmente perigosas.
 
 % ==============================================================================
 % BARREIRA DE FLUTUAÇÃO: IMPEDE QUE ELEMENTOS FLUTUEM PARA AS REFERÊNCIAS
