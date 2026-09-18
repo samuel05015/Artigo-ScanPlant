@@ -223,11 +223,11 @@ Com base na modelagem de classes, foram definidos os atores do sistema, que repr
 \noindent Fonte: Elaborada pelos autores.
 \end{figure}
 
-No Diagrama de Casos de Uso Geral (Figura 5), ilustram-se as principais interações do cultivador com o sistema ScanPlant, delimitadas pelo limite formal do sistema (\textit{System Boundary}) e orquestradas entre os atores humanos e os serviços computacionais externos. As operações estão organizadas de forma modular em cinco pacotes de funcionalidades: Autenticação e Perfil (cadastro, autenticação, recuperação de credenciais e nível de experiência), Reconhecimento e Diagnóstico (captura fotográfica, identificação de espécies e diagnóstico fitossanitário), Coleção e Cuidados (cadastro de plantas, registro histórico e agendamento de regas), Comunidade e Interação Social (galeria colaborativa e chat direto entre cultivadores) e Administração e Auditoria (gestão de chaves de APIs e visualização de trilhas de moderação). O caso de uso de identificação inclui compulsoriamente a API do Plant.id ($\ll include \gg$), enquanto as consultas ao assistente virtual acionam a API do Google Gemini ($\ll include \gg$). De maneira complementar, a detecção de risco toxicológico estende condicionalmente a emissão de alertas preventivos de emergência ($\ll extend \gg$).
+O Diagrama de Casos de Uso Geral (Figura 5) apresenta uma visão de alto nível dos serviços oferecidos pelo ScanPlant. Em consonância com Sommerville (2011), os casos de uso representam objetivos observáveis dos atores e evitam expor decisões internas de implementação. O visitante consulta a galeria pública, cria uma conta, autentica-se e recupera o acesso; o cultivador identifica plantas, organiza a coleção e os cuidados, consulta o assistente botânico, participa da comunidade e gerencia seu perfil; e o administrador gerencia usuários, modera conteúdo e audita operações. APIs externas, filtros de segurança e rotinas de enriquecimento de dados não aparecem como casos de uso nesta visão geral, pois constituem mecanismos internos detalhados nos diagramas de arquitetura e de sequência.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{figuras/figura5_caso_de_uso.png}
+\includegraphics[width=0.96\textwidth]{figuras/figura5_caso_de_uso.png}
 \caption{Diagrama de caso de uso geral do sistema ScanPlant}
 \label{fig:caso_de_uso}
 \vspace{2pt}
